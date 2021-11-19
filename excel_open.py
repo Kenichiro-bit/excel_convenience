@@ -9,7 +9,7 @@ sys.argv
 
 class excel_file_open():
     def __init__(self):
-        self.open_excel_file_name1 = 'D:/UserArea/J0134661/Desktop/便利機能/excel_check/コピーFMEA試験正解表_次世代PDRV_OBD対象⊿8_masuo.xlsx'
+        self.open_excel_file_name1 = 'D:/UserArea/J0134661/Desktop/便利機能/excel_check/excel.xlsx'
         self.open_excel_file_sheet_name1 = input('エクセルファイルのsheet名を記入>>')
         print(self.open_excel_file_sheet_name1)
 
