@@ -5,6 +5,9 @@ import excel_open
 from tqdm import tqdm
 import file_initial
 import excel_color
+import excel_col_num
+
+match_table = excel_col_num.alpha_num
 
 file1 = file_initial.excel_file1
 sheet1 = file_initial.excel_sheet1
@@ -34,17 +37,18 @@ class correct_cell():
         self.b_cell = excel_cell.get_cell(b_read,list_cell_excel2)
 
     def correct_process(self): ## 行数列数が異なるとき
-        get_col_num_checking = int(input('比較したい列番号を入力してください'))
-        get_col_num_original = int(input('参照したい元の列番号を入力してください'))
-        for i in tqdm(range(len(self.a_cell))):
-            for j in range(len(self.b_cell)):
-                if b_read.iat[i,get_col_num_original] == a_read.iat[j,get_col_num_checking] :
-                    cell_number.append(i)
-                    count_cell.append(a_read.iat[j,get_col_num_checking])
+        for j in tqdm(range(len(self.b_cell))):
+            if b_read.iat[j,int(match_table["R"])-1] == "Apply":
+                for i in range(len(self.a_cell)):
+                    if a_read.iat[i,int(match_table["E"])-1] == b_read.iat[j,int(match_table["B"])-1] and \
+                       a_read.iat[i,int(match_table["L"])-1] == b_read.iat[j,int(match_table["J"])-1] and \
+                       a_read.iat[i,int(match_table["A"])-1] == "NG":
+                        cell_number.append(j)
+        print(count_cell)
 
     def correct_check(self): ##同じとき
         for i in tqdm(range(len(self.a_cell))):
-            if b_read.iat[i,check_num] == a_read.iat[i,color_num] :
+            if b_read.iat[i,check_num] != a_read.iat[i,color_num] :
                 cell_number.append(i)
                 count_cell.append(a_read.iat[i,color_num])
                 print(b_read.iat[i,check_num],a_read.iat[i,color_num])
@@ -63,6 +67,3 @@ file_excel = color.open_excel_color(file1)
 for i in range(len(cell_number)):
     color.excel_color(int(cell_number[i]),file_excel,sheet2,color_num)
 color.close_pyxl_excel_color(file_excel)
-
-
-

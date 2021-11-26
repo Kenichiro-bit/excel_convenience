@@ -9,7 +9,7 @@ class excel_fill_color():
     def excel_color(self,number,pyxl_excel,sheet,col_num):
         excel2_sheet = pyxl_excel[sheet]
         fill = openpyxl.styles.PatternFill(patternType='solid',fgColor='FF0000', bgColor='FF0000')
-        excel2_sheet.cell(row=number+1, column=col_num+1).fill = fill
+        excel2_sheet.cell(row=number+2, column=col_num+1).fill = fill
         
         return excel2_sheet
 
